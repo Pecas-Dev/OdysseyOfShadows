@@ -18,7 +18,7 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	virtual void Jump() override;
-		
+
 protected:
 
 	virtual void BeginPlay() override;
@@ -28,6 +28,9 @@ protected:
 	void Attack();
 	void Equip();
 	void Dodge();
+
+
+	FRotator characterCameraRotation = FRotator(0.f, -20.f, 0.f);
 
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
@@ -53,4 +56,15 @@ protected:
 
 private:
 
+	UPROPERTY(VisibleAnywhere)
+		class USpringArmComponent* cameraBoom;
+
+	UPROPERTY(VisibleAnywhere)
+		class UCameraComponent* viewCamera;
+
+	UPROPERTY(VisibleAnywhere, Category = Hair)
+		class UGroomComponent* characterHair;
+
+	UPROPERTY(VisibleAnywhere, Category = Hair)
+		class UGroomComponent* characterEyebrows;
 };

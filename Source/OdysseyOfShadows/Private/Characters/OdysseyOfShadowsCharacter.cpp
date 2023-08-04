@@ -1,11 +1,36 @@
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
 #include "Components/InputComponent.h"
+#include "GameFramework/SpringArmComponent.h"
+#include "Camera/CameraComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "GroomComponent.h"
 #include "Characters/OdysseyOfShadowsCharacter.h"
 
 AOdysseyOfShadowsCharacter::AOdysseyOfShadowsCharacter()
 {
 	PrimaryActorTick.bCanEverTick = true;
+
+	bUseControllerRotationPitch = false;
+	bUseControllerRotationYaw = false;
+	bUseControllerRotationRoll = false;
+
+	GetCharacterMovement()->bOrientRotationToMovement = true;
+
+	cameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
+	cameraBoom->SetupAttachment(GetRootComponent());
+	cameraBoom->TargetArmLength = 300.f;
+
+	viewCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("ViewCamera"));
+	viewCamera->SetupAttachment(cameraBoom);
+
+	characterHair = CreateDefaultSubobject<UGroomComponent>(TEXT("Hair"));
+	characterHair->SetupAttachment(GetMesh());
+	characterHair->AttachmentName = FString("head");
+
+	characterEyebrows = CreateDefaultSubobject<UGroomComponent>(TEXT("Eyebrows"));
+	characterEyebrows->SetupAttachment(GetMesh());
+	characterEyebrows->AttachmentName = FString("head");
 }
 
 void AOdysseyOfShadowsCharacter::BeginPlay()
