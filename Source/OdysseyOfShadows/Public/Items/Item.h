@@ -31,11 +31,20 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Rotation")
 		float rotationConstantZ = 1.f;
 
+	UPROPERTY(VisibleAnywhere ,BlueprintReadOnly)
+		UStaticMeshComponent* itemMesh;
+
 	UFUNCTION(BlueprintPure)
 		float TransformedSine();
 
 	UFUNCTION(BlueprintPure)
 		float TransformedCosine();
+
+	UFUNCTION()
+		virtual void OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
+	UFUNCTION()
+		virtual void OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
 	template<typename T>
 	T Avarage(T first, T second);
@@ -46,7 +55,7 @@ private:
 		float runningTime;
 
 	UPROPERTY(VisibleAnywhere)
-		UStaticMeshComponent* itemMesh;
+		class USphereComponent* sphereComponent;
 };
 
 template<typename T>

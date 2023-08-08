@@ -5,6 +5,8 @@
 #include "Camera/CameraComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GroomComponent.h"
+#include "Items/Item.h"
+#include "Items/Weapons/Weapon.h"
 #include "Characters/OdysseyOfShadowsCharacter.h"
 
 AOdysseyOfShadowsCharacter::AOdysseyOfShadowsCharacter()
@@ -70,17 +72,21 @@ void AOdysseyOfShadowsCharacter::Look(const FInputActionValue& value)
 
 void AOdysseyOfShadowsCharacter::Jump()
 {
-
+	Super::Jump();
 }
 
 void AOdysseyOfShadowsCharacter::Equip()
 {
+	AWeapon* overlappingWeapon = Cast<AWeapon>(overlappingItem);
 
+	if (overlappingWeapon)
+	{
+		overlappingWeapon->Equip(GetMesh(), FName("RightHandSocket"));
+	}
 }
 
 void AOdysseyOfShadowsCharacter::Attack()
 {
-
 }
 
 void AOdysseyOfShadowsCharacter::Dodge()
@@ -103,8 +109,8 @@ void AOdysseyOfShadowsCharacter::SetupPlayerInputComponent(UInputComponent* Play
 		enhancedInputComponent->BindAction(characterMoveAction, ETriggerEvent::Triggered, this, &AOdysseyOfShadowsCharacter::Move);
 		enhancedInputComponent->BindAction(lookAction, ETriggerEvent::Triggered, this, &AOdysseyOfShadowsCharacter::Look);
 		enhancedInputComponent->BindAction(jumpAction, ETriggerEvent::Triggered, this, &AOdysseyOfShadowsCharacter::Jump);
-		/*enhancedInputComponent->BindAction(equipAction, ETriggerEvent::Triggered, this, &AOdysseyOfShadowsCharacter::Equip);
-		enhancedInputComponent->BindAction(attackAction, ETriggerEvent::Triggered, this, &AOdysseyOfShadowsCharacter::Attack);
+		enhancedInputComponent->BindAction(equipAction, ETriggerEvent::Triggered, this, &AOdysseyOfShadowsCharacter::Equip);
+		/*enhancedInputComponent->BindAction(attackAction, ETriggerEvent::Triggered, this, &AOdysseyOfShadowsCharacter::Attack);
 		enhancedInputComponent->BindAction(dodgeAction, ETriggerEvent::Triggered, this, &AOdysseyOfShadowsCharacter::Dodge);*/
 	}
 }

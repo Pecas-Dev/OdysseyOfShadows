@@ -4,10 +4,10 @@
 #include "InputActionValue.h"
 #include "OdysseyOfShadowsCharacter.generated.h"
 
+
 UCLASS()
 class ODYSSEYOFSHADOWS_API AOdysseyOfShadowsCharacter : public ACharacter
 {
-
 	GENERATED_BODY()
 
 public:
@@ -18,6 +18,7 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	virtual void Jump() override;
+
 
 protected:
 
@@ -54,6 +55,7 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
 		class UInputAction* dodgeAction;
 
+
 private:
 
 	UPROPERTY(VisibleAnywhere)
@@ -67,4 +69,19 @@ private:
 
 	UPROPERTY(VisibleAnywhere, Category = Hair)
 		class UGroomComponent* characterEyebrows;
+
+	UPROPERTY(VisibleInstanceOnly)
+		class AItem* overlappingItem;
+
+	CharacterState state = Unequipped;
+
+public:
+	void SetOverlappingItem(AItem* item) { overlappingItem = item; }
+};
+
+enum CharacterState
+{
+	Unequipped,
+	EquippedOneHandedWeapon,
+	EquippedTwoHandedWeapon,
 };
