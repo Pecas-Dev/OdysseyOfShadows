@@ -2,8 +2,8 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "InputActionValue.h"
+#include "CharacterTypes.h"
 #include "OdysseyOfShadowsCharacter.generated.h"
-
 
 UCLASS()
 class ODYSSEYOFSHADOWS_API AOdysseyOfShadowsCharacter : public ACharacter
@@ -30,58 +30,88 @@ protected:
 	void Equip();
 	void Dodge();
 
+	void PlayAttackMontage();
+	void PlayEquipMontage(FName sectionName);
+
+
+	bool CanAttack();
+	bool CanDisarm();
+	bool CanArm();
+
+
+	UFUNCTION(BlueprintCallable)
+	void AttackEnd();
+
+	UFUNCTION(BlueprintCallable)
+	void Disarm();
+
+	UFUNCTION(BlueprintCallable)
+	void Arm();
+
+	UFUNCTION(BlueprintCallable)
+	void FinishEquipping();
+
+
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
+	class UInputMappingContext* characterMappingContext;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
+	class UInputAction* characterMoveAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
+	class UInputAction* lookAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
+	class UInputAction* jumpAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
+	class UInputAction* equipAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
+	class UInputAction* attackAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
+	class UInputAction* dodgeAction;
+
+
 
 	FRotator characterCameraRotation = FRotator(0.f, -20.f, 0.f);
-
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
-		class UInputMappingContext* characterMappingContext;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
-		class UInputAction* characterMoveAction;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
-		class UInputAction* lookAction;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
-		class UInputAction* jumpAction;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
-		class UInputAction* equipAction;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
-		class UInputAction* attackAction;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
-		class UInputAction* dodgeAction;
-
 
 private:
 
 	UPROPERTY(VisibleAnywhere)
-		class USpringArmComponent* cameraBoom;
+	class USpringArmComponent* cameraBoom;
 
 	UPROPERTY(VisibleAnywhere)
-		class UCameraComponent* viewCamera;
+	class UCameraComponent* viewCamera;
 
 	UPROPERTY(VisibleAnywhere, Category = Hair)
-		class UGroomComponent* characterHair;
+	class UGroomComponent* characterHair;
 
 	UPROPERTY(VisibleAnywhere, Category = Hair)
-		class UGroomComponent* characterEyebrows;
+	class UGroomComponent* characterEyebrows;
 
 	UPROPERTY(VisibleInstanceOnly)
-		class AItem* overlappingItem;
+	class AItem* overlappingItem;
 
-	CharacterState state = Unequipped;
+	UPROPERTY(EditDefaultsOnly, Category = Montages)
+	class UAnimMontage* attackMontage;
+
+	UPROPERTY(EditDefaultsOnly, Category = Montages)
+	class UAnimMontage* equipkMontage;
+
+	UPROPERTY(BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
+	EActionState actionState = EActionState::EAS_Unoccupied;
+
+	UPROPERTY(VisibleAnywhere, Category = Weapon)
+	class AWeapon* equippedWeapon;
+
+
+	ECharacterState characterState = ECharacterState::ECS_Unequipped;
 
 public:
-	void SetOverlappingItem(AItem* item) { overlappingItem = item; }
+	FORCEINLINE void SetOverlappingItem(AItem* item) { overlappingItem = item; }
+	FORCEINLINE ECharacterState GetCharacterState() const { return characterState; }
 };
 
-enum CharacterState
-{
-	Unequipped,
-	EquippedOneHandedWeapon,
-	EquippedTwoHandedWeapon,
-};

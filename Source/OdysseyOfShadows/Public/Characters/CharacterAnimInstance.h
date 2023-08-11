@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "Animation/AnimInstance.h"
+#include "CharacterTypes.h"
 #include "CharacterAnimInstance.generated.h"
 
 /**
@@ -10,7 +11,6 @@
 UCLASS()
 class ODYSSEYOFSHADOWS_API UCharacterAnimInstance : public UAnimInstance
 {
-
 
 	GENERATED_BODY()
 
@@ -30,6 +30,9 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, Category = Movement)
 		bool isFalling;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Movement | Character State")
+		ECharacterState characterState;
 
 protected:
 

@@ -18,6 +18,8 @@ public:
 
 	void Equip(USceneComponent* inParent, FName inSocketName);
 
+	void AttachMeshToSocket(USceneComponent* inParent, const FName& inSocketName);
+
 protected:
 	virtual void OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult) override;
 

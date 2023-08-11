@@ -24,5 +24,7 @@ void UCharacterAnimInstance::NativeUpdateAnimation(float DeltaTime)
 		groundSpeed = UKismetMathLibrary::VSizeXY(odysseyOfShadowsCharacterMovement->Velocity);
 
 		isFalling = odysseyOfShadowsCharacterMovement->IsFalling();
+
+		characterState = odysseyOfShadowsCharacter->GetCharacterState();
 	}
 }
