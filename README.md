@@ -1,2 +1,2 @@
 # OdysseyOfShadows
- An open-world combat game made in Unreal Engine.
+ An open-world adventure/combat game made in Unreal Engine.
