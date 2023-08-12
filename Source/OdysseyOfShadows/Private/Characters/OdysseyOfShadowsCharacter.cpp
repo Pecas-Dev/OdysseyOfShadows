@@ -78,7 +78,18 @@ void AOdysseyOfShadowsCharacter::Jump()
 {
 	if (actionState != EActionState::EAS_Unoccupied) { return; }
 
-	Super::Jump();
+
+	if (GetWorld()->TimeSeconds - lastJumpTime >= 1.25f)
+	{
+		Super::Jump();
+
+		lastJumpTime = GetWorld()->TimeSeconds;
+	}
+}
+
+void AOdysseyOfShadowsCharacter::StopJumping()
+{
+	Super::StopJumping();
 }
 
 void AOdysseyOfShadowsCharacter::Equip()
@@ -179,6 +190,8 @@ void AOdysseyOfShadowsCharacter::PlayEquipMontage(FName sectionName)
 		animInstanceEquip->Montage_JumpToSection(sectionName, equipkMontage);
 	}
 }
+
+
 
 void AOdysseyOfShadowsCharacter::AttackEnd()
 {

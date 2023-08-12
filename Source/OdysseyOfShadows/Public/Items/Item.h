@@ -34,6 +34,9 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UStaticMeshComponent* itemMesh;
 
+	UPROPERTY(VisibleAnywhere)
+	class USphereComponent* sphereComponent;
+
 	UFUNCTION(BlueprintPure)
 	float TransformedSine();
 
@@ -57,9 +60,6 @@ private:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	float runningTime;
-
-	UPROPERTY(VisibleAnywhere)
-	class USphereComponent* sphereComponent;
 };
 
 template<typename T>

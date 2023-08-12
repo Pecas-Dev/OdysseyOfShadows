@@ -18,6 +18,7 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	virtual void Jump() override;
+	virtual void StopJumping() override;
 
 
 protected:
@@ -109,6 +110,9 @@ private:
 
 
 	ECharacterState characterState = ECharacterState::ECS_Unequipped;
+
+	//bool bCanJump = true;
+	float lastJumpTime = 0.f; 
 
 public:
 	FORCEINLINE void SetOverlappingItem(AItem* item) { overlappingItem = item; }

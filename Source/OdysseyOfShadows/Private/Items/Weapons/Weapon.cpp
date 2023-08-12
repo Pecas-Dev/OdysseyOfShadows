@@ -1,3 +1,5 @@
+#include "Kismet/GameplayStatics.h"
+#include "Components/SphereComponent.h"
 #include "Characters/OdysseyOfShadowsCharacter.h"
 #include "Items/Weapons/Weapon.h"
 
@@ -17,6 +19,15 @@ void AWeapon::Equip(USceneComponent* inParent, FName inSocketName)
 	AttachMeshToSocket(inParent, inSocketName);
 
 	itemState = EItemState::EIS_Equipped;
+
+	if (equipBladeSound)
+	{
+		UGameplayStatics::PlaySoundAtLocation(this, equipBladeSound, GetActorLocation());
+	}
+	if (sphereComponent)
+	{
+		sphereComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	}
 }
 
 void AWeapon::AttachMeshToSocket(USceneComponent* inParent, const FName& inSocketName)

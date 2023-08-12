@@ -28,4 +28,6 @@ protected:
 
 private:
 
+	UPROPERTY(EditAnywhere, Category = WeaponProperty)
+	class USoundBase* equipBladeSound;
 };
