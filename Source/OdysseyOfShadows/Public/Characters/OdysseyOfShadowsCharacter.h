@@ -87,11 +87,11 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	class UCameraComponent* viewCamera;
 
-	UPROPERTY(VisibleAnywhere, Category = Hair)
-	class UGroomComponent* characterHair;
+	//UPROPERTY(VisibleAnywhere, Category = Hair)
+	//class UGroomComponent* characterHair;
 
-	UPROPERTY(VisibleAnywhere, Category = Hair)
-	class UGroomComponent* characterEyebrows;
+	//UPROPERTY(VisibleAnywhere, Category = Hair)
+	//class UGroomComponent* characterEyebrows;
 
 	UPROPERTY(VisibleInstanceOnly)
 	class AItem* overlappingItem;

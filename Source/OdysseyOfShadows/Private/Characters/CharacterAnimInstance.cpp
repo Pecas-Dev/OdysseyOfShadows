@@ -1,7 +1,7 @@
+#include "Characters/CharacterAnimInstance.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Characters/OdysseyOfShadowsCharacter.h"
-#include "Characters/CharacterAnimInstance.h"
 
 void UCharacterAnimInstance::NativeInitializeAnimation()
 {

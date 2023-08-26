@@ -1,14 +1,14 @@
+#include "Characters/OdysseyOfShadowsCharacter.h"
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
 #include "Components/InputComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
-#include "GroomComponent.h"
 #include "Items/Item.h"
 #include "Items/Weapons/Weapon.h"
 #include "Animation/AnimMontage.h"
-#include "Characters/OdysseyOfShadowsCharacter.h"
+//#include "GroomComponent.h"
 
 AOdysseyOfShadowsCharacter::AOdysseyOfShadowsCharacter()
 {
@@ -27,13 +27,13 @@ AOdysseyOfShadowsCharacter::AOdysseyOfShadowsCharacter()
 	viewCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("ViewCamera"));
 	viewCamera->SetupAttachment(cameraBoom);
 
-	characterHair = CreateDefaultSubobject<UGroomComponent>(TEXT("Hair"));
-	characterHair->SetupAttachment(GetMesh());
-	characterHair->AttachmentName = FString("head");
+	//characterHair = CreateDefaultSubobject<UGroomComponent>(TEXT("Hair"));
+	//characterHair->SetupAttachment(GetMesh());
+	//characterHair->AttachmentName = FString("head");
 
-	characterEyebrows = CreateDefaultSubobject<UGroomComponent>(TEXT("Eyebrows"));
-	characterEyebrows->SetupAttachment(GetMesh());
-	characterEyebrows->AttachmentName = FString("head");
+	//characterEyebrows = CreateDefaultSubobject<UGroomComponent>(TEXT("Eyebrows"));
+	//characterEyebrows->SetupAttachment(GetMesh());
+	//characterEyebrows->AttachmentName = FString("head");
 }
 
 void AOdysseyOfShadowsCharacter::BeginPlay()
