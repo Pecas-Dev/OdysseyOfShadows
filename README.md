@@ -6,7 +6,7 @@
 
 
 
-**Odyssey of Shadows** will take you on an adventure of a wonderful and detailed world, where you will find different quests and places to explore.
+**Odyssey of Shadows** will take you on an epic adventure into a wonderful and detailed world. In this open-world exploration game, you'll traverse vast deserts, uncover hidden dungeons, and face battle encounters with menacing monsters. As a daring explorer, you'll tackle different quests, engage in strategic combat, and forge your path through a captivating world. Uncover the secrets of this realm and be part of the Odyssey of Shadows. Your adventure awaits!
 
   --------------------------------
 # Controls
