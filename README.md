@@ -21,13 +21,12 @@
 
 - **Coming Soon**
 
-
-  --------------------------------
+--------------------------------
 # Credits
 
 The game was made by me as well as many features and characteristics that were created and implemented in **Odyssey Of Shadows**. Nontheless this project would not have been possible without the teaching and guidance of [Stephen Ulibarri](https://www.linkedin.com/in/stephen-ulibarri-980a10169/). I would also like to thank [GameDevTV](https://www.gamedev.tv/https://www.gamedev.tv/) for their courses and guidance during the past years with many of my projects.
 
- --------------------------------
+--------------------------------
  # Notes
 
  - **This is my first Unreal Engine project.**
