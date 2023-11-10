@@ -4,6 +4,7 @@
 
 
 #define DRAW_SPHERE(location) if (GetWorld()) DrawDebugSphere(GetWorld(), location, 25.f, 12, FColor::Red, true);
+#define DRAW_SPHERE_COLOR(location, color) DrawDebugSphere(GetWorld(), location, 10.f, 12, color, false, 5.0f);
 #define DRAW_SPHERE_SingleFrame(Location) if (GetWorld()) DrawDebugSphere(GetWorld(), Location, 25.f, 12, FColor::Red, false, -1.f);
 
 #define DRAW_LINE_SingleFrame(StartLocation, EndLocation) if (GetWorld()) DrawDebugLine(GetWorld(), StartLocation, EndLocation, FColor::Red, false, -1.f, 0, 1.f);

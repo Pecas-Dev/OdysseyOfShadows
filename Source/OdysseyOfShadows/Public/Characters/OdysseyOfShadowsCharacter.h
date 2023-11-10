@@ -20,6 +20,12 @@ public:
 	virtual void Jump() override;
 	virtual void StopJumping() override;
 
+	UFUNCTION(BlueprintCallable)
+	void SetWeaponCollisionEnabled(ECollisionEnabled::Type collisionEnabled);
+
+	/*UFUNCTION(BlueprintCallable)
+	void SetWeaponCollisionDisabled(ECollisionEnabled::Type collisionDisabled);*/
+
 
 protected:
 
@@ -32,7 +38,7 @@ protected:
 	void Dodge();
 
 	void PlayAttackMontage();
-	void PlayEquipMontage(FName sectionName);
+	void PlayEquipMontage(const FName& sectionName);
 
 
 	bool CanAttack();
@@ -112,7 +118,7 @@ private:
 	ECharacterState characterState = ECharacterState::ECS_Unequipped;
 
 	//bool bCanJump = true;
-	float lastJumpTime = 0.f; 
+	float lastJumpTime = 0.f;
 
 public:
 	FORCEINLINE void SetOverlappingItem(AItem* item) { overlappingItem = item; }

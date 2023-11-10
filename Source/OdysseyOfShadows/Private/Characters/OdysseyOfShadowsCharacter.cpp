@@ -2,6 +2,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
 #include "Components/InputComponent.h"
+#include "Components/BoxComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
@@ -52,7 +53,7 @@ void AOdysseyOfShadowsCharacter::BeginPlay()
 
 void AOdysseyOfShadowsCharacter::Move(const FInputActionValue& value)
 {
-	if (actionState != EActionState::EAS_Unoccupied ) { return; }
+	if (actionState != EActionState::EAS_Unoccupied) { return; }
 
 
 	const FVector2D movementVector = value.Get<FVector2D>();
@@ -90,6 +91,15 @@ void AOdysseyOfShadowsCharacter::Jump()
 void AOdysseyOfShadowsCharacter::StopJumping()
 {
 	Super::StopJumping();
+}
+
+void AOdysseyOfShadowsCharacter::SetWeaponCollisionEnabled(ECollisionEnabled::Type collisionEnabled)
+{
+	if (equippedWeapon && equippedWeapon->GetWeaponBox())
+	{
+		equippedWeapon->GetWeaponBox()->SetCollisionEnabled(collisionEnabled);
+		equippedWeapon->ignoreActors.Empty();
+	}
 }
 
 void AOdysseyOfShadowsCharacter::Equip()
@@ -179,7 +189,7 @@ void AOdysseyOfShadowsCharacter::PlayAttackMontage()
 	}
 }
 
-void AOdysseyOfShadowsCharacter::PlayEquipMontage(FName sectionName)
+void AOdysseyOfShadowsCharacter::PlayEquipMontage(const FName& sectionName)
 {
 	UAnimInstance* animInstanceEquip = GetMesh()->GetAnimInstance();
 
